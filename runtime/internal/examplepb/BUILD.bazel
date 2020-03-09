@@ -8,16 +8,21 @@ proto_library(
     name = "examplepb_proto",
     srcs = [
         "example.proto",
+        "proto2.proto",
+        "proto3.proto",
     ],
     deps = [
+        "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
     ],
 )
 
 go_proto_library(
     name = "examplepb_go_proto",
-    importpath = "github.com/grpc-ecosystem/grpc-gateway/runtime/internal/examplepb",
+    importpath = "github.com/grpc-ecosystem/grpc-gateway/examples/internal/examplepb",
     proto = ":examplepb_proto",
     deps = [
         "@com_github_golang_protobuf//descriptor:go_default_library_gen",  # keep
@@ -27,5 +32,5 @@ go_proto_library(
 go_library(
     name = "go_default_library",
     embed = [":examplepb_go_proto"],
-    importpath = "github.com/grpc-ecosystem/grpc-gateway/runtime/internal/examplepb",
+    importpath = "github.com/grpc-ecosystem/grpc-gateway/examples/internal/examplepb",
 )
